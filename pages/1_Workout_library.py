@@ -2,6 +2,8 @@ import streamlit as st
 import plotly.graph_objects as go
 
 from logic.muscle_mapping import load_movements, load_workouts, compute_muscle_load, normalize_load, format_top_muscles
+from logic.scoring import workout_status, format_score
+from logic.aggregate import load_sessions
 
 st.set_page_config(page_title="Workout library", page_icon="📋", layout="wide")
 
@@ -9,9 +11,13 @@ st.set_page_config(page_title="Workout library", page_icon="📋", layout="wide"
 def get_data():
     movement_map, muscle_groups = load_movements()
     workouts = load_workouts()
-    return movement_map, muscle_groups, workouts
+    sessions = load_sessions()
+    return movement_map, muscle_groups, workouts, sessions
 
-movement_map, muscle_groups, workouts = get_data()
+movement_map, muscle_groups, workouts, sessions = get_data()
+if "logged_sessions" not in st.session_state:
+    st.session_state.logged_sessions = []
+all_sessions = sessions + st.session_state.logged_sessions
 
 st.title("Workout library")
 
@@ -62,6 +68,26 @@ with col_main:
             reps = f"{m['reps']} " if m.get("reps") is not None else ""
             unit = m.get("unit", "")
             st.write(f"- {reps}{unit} — **{m['movement']}**".replace("  ", " "))
+
+    status = workout_status(selected, all_sessions)
+    if status["has_pb"]:
+        st.success(f"🏆 Your PB: **{status['pb_display']}** (from {status['attempt_count']} logged attempt{'s' if status['attempt_count'] != 1 else ''})")
+    elif status["has_benchmark"]:
+        st.info(
+            "You haven't attempted this workout yet. Until you log a score, it'll be evaluated against public "
+            "benchmark ranges below — from your next attempt onward, it'll compare against your own PB instead."
+        )
+        bands = status["bands"]
+        band_order = ["elite", "advanced", "intermediate", "beginner"] if selected["lower_is_better"] else ["beginner", "intermediate", "advanced", "elite"]
+        cols = st.columns(4)
+        for col, level in zip(cols, band_order):
+            lo, hi = bands[level]
+            col.metric(level.capitalize(), f"{format_score(lo, status['score_type'])}–{format_score(hi, status['score_type'])}")
+    else:
+        st.info(
+            "You haven't attempted this workout yet, and there's no public benchmark data available for it "
+            "(Open workouts are leaderboard-scored, not band-scored). Your first logged attempt will become your baseline."
+        )
 
     fig = go.Figure()
     categories_r = [m.capitalize() for m in muscle_groups] + [muscle_groups[0].capitalize()]

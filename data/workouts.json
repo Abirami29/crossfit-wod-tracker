@@ -7,9 +7,37 @@
     "time_cap_minutes": 20,
     "rounds": "21-15-9",
     "movements": [
-      { "movement": "thruster", "reps": 45, "unit": "reps" },
-      { "movement": "pull-up", "reps": 45, "unit": "reps" }
-    ]
+      {
+        "movement": "thruster",
+        "reps": 45,
+        "unit": "reps"
+      },
+      {
+        "movement": "pull-up",
+        "reps": 45,
+        "unit": "reps"
+      }
+    ],
+    "score_type": "time_minutes",
+    "lower_is_better": true,
+    "benchmark_bands": {
+      "beginner": [
+        7,
+        10
+      ],
+      "intermediate": [
+        5,
+        7
+      ],
+      "advanced": [
+        3,
+        5
+      ],
+      "elite": [
+        0,
+        3
+      ]
+    }
   },
   {
     "id": "grace",
@@ -19,8 +47,32 @@
     "time_cap_minutes": 10,
     "rounds": null,
     "movements": [
-      { "movement": "clean and jerk", "reps": 30, "unit": "reps" }
-    ]
+      {
+        "movement": "clean and jerk",
+        "reps": 30,
+        "unit": "reps"
+      }
+    ],
+    "score_type": "time_minutes",
+    "lower_is_better": true,
+    "benchmark_bands": {
+      "beginner": [
+        5,
+        8
+      ],
+      "intermediate": [
+        3,
+        5
+      ],
+      "advanced": [
+        2,
+        3
+      ],
+      "elite": [
+        0,
+        2
+      ]
+    }
   },
   {
     "id": "cindy",
@@ -30,10 +82,42 @@
     "time_cap_minutes": 20,
     "rounds": null,
     "movements": [
-      { "movement": "pull-up", "reps": 5, "unit": "reps" },
-      { "movement": "push-up", "reps": 10, "unit": "reps" },
-      { "movement": "air squat", "reps": 15, "unit": "reps" }
-    ]
+      {
+        "movement": "pull-up",
+        "reps": 5,
+        "unit": "reps"
+      },
+      {
+        "movement": "push-up",
+        "reps": 10,
+        "unit": "reps"
+      },
+      {
+        "movement": "air squat",
+        "reps": 15,
+        "unit": "reps"
+      }
+    ],
+    "score_type": "rounds",
+    "lower_is_better": false,
+    "benchmark_bands": {
+      "beginner": [
+        8,
+        13
+      ],
+      "intermediate": [
+        14,
+        18
+      ],
+      "advanced": [
+        19,
+        22
+      ],
+      "elite": [
+        23,
+        99
+      ]
+    }
   },
   {
     "id": "diane",
@@ -43,9 +127,37 @@
     "time_cap_minutes": 15,
     "rounds": "21-15-9",
     "movements": [
-      { "movement": "deadlift", "reps": 45, "unit": "reps" },
-      { "movement": "handstand push-up", "reps": 45, "unit": "reps" }
-    ]
+      {
+        "movement": "deadlift",
+        "reps": 45,
+        "unit": "reps"
+      },
+      {
+        "movement": "handstand push-up",
+        "reps": 45,
+        "unit": "reps"
+      }
+    ],
+    "score_type": "time_minutes",
+    "lower_is_better": true,
+    "benchmark_bands": {
+      "beginner": [
+        10,
+        14
+      ],
+      "intermediate": [
+        6,
+        9
+      ],
+      "advanced": [
+        4,
+        6
+      ],
+      "elite": [
+        0,
+        4
+      ]
+    }
   },
   {
     "id": "murph",
@@ -55,12 +167,52 @@
     "time_cap_minutes": 60,
     "rounds": null,
     "movements": [
-      { "movement": "run", "reps": 1, "unit": "mile" },
-      { "movement": "pull-up", "reps": 100, "unit": "reps" },
-      { "movement": "push-up", "reps": 200, "unit": "reps" },
-      { "movement": "air squat", "reps": 300, "unit": "reps" },
-      { "movement": "run", "reps": 1, "unit": "mile" }
-    ]
+      {
+        "movement": "run",
+        "reps": 1,
+        "unit": "mile"
+      },
+      {
+        "movement": "pull-up",
+        "reps": 100,
+        "unit": "reps"
+      },
+      {
+        "movement": "push-up",
+        "reps": 200,
+        "unit": "reps"
+      },
+      {
+        "movement": "air squat",
+        "reps": 300,
+        "unit": "reps"
+      },
+      {
+        "movement": "run",
+        "reps": 1,
+        "unit": "mile"
+      }
+    ],
+    "score_type": "time_minutes",
+    "lower_is_better": true,
+    "benchmark_bands": {
+      "beginner": [
+        60,
+        80
+      ],
+      "intermediate": [
+        45,
+        58
+      ],
+      "advanced": [
+        35,
+        45
+      ],
+      "elite": [
+        0,
+        35
+      ]
+    }
   },
   {
     "id": "dt",
@@ -70,10 +222,42 @@
     "time_cap_minutes": 20,
     "rounds": 5,
     "movements": [
-      { "movement": "deadlift", "reps": 12, "unit": "reps" },
-      { "movement": "clean", "reps": 9, "unit": "reps" },
-      { "movement": "push jerk", "reps": 6, "unit": "reps" }
-    ]
+      {
+        "movement": "deadlift",
+        "reps": 12,
+        "unit": "reps"
+      },
+      {
+        "movement": "clean",
+        "reps": 9,
+        "unit": "reps"
+      },
+      {
+        "movement": "push jerk",
+        "reps": 6,
+        "unit": "reps"
+      }
+    ],
+    "score_type": "time_minutes",
+    "lower_is_better": true,
+    "benchmark_bands": {
+      "beginner": [
+        15,
+        20
+      ],
+      "intermediate": [
+        9,
+        15
+      ],
+      "advanced": [
+        6,
+        9
+      ],
+      "elite": [
+        0,
+        6
+      ]
+    }
   },
   {
     "id": "kalsu",
@@ -83,9 +267,37 @@
     "time_cap_minutes": 30,
     "rounds": null,
     "movements": [
-      { "movement": "thruster", "reps": 100, "unit": "reps" },
-      { "movement": "burpee", "reps": 5, "unit": "reps (EMOM)" }
-    ]
+      {
+        "movement": "thruster",
+        "reps": 100,
+        "unit": "reps"
+      },
+      {
+        "movement": "burpee",
+        "reps": 5,
+        "unit": "reps (EMOM)"
+      }
+    ],
+    "score_type": "time_minutes",
+    "lower_is_better": true,
+    "benchmark_bands": {
+      "beginner": [
+        22,
+        30
+      ],
+      "intermediate": [
+        19,
+        22
+      ],
+      "advanced": [
+        15,
+        19
+      ],
+      "elite": [
+        0,
+        14
+      ]
+    }
   },
   {
     "id": "25.1",
@@ -95,10 +307,25 @@
     "time_cap_minutes": 15,
     "rounds": null,
     "movements": [
-      { "movement": "lateral burpee over dumbbell", "reps": null, "unit": "ascending 3-6-9..." },
-      { "movement": "dumbbell hang clean-to-overhead", "reps": null, "unit": "ascending 3-6-9..." },
-      { "movement": "walking lunge", "reps": null, "unit": "30 ft per round" }
-    ]
+      {
+        "movement": "lateral burpee over dumbbell",
+        "reps": null,
+        "unit": "ascending 3-6-9..."
+      },
+      {
+        "movement": "dumbbell hang clean-to-overhead",
+        "reps": null,
+        "unit": "ascending 3-6-9..."
+      },
+      {
+        "movement": "walking lunge",
+        "reps": null,
+        "unit": "30 ft per round"
+      }
+    ],
+    "score_type": "rounds",
+    "lower_is_better": false,
+    "benchmark_bands": null
   },
   {
     "id": "25.2",
@@ -108,16 +335,55 @@
     "time_cap_minutes": 12,
     "rounds": null,
     "movements": [
-      { "movement": "pull-up", "reps": 21, "unit": "reps" },
-      { "movement": "double under", "reps": 42, "unit": "reps" },
-      { "movement": "thruster", "reps": 21, "unit": "reps" },
-      { "movement": "chest-to-bar pull-up", "reps": 18, "unit": "reps" },
-      { "movement": "double under", "reps": 36, "unit": "reps" },
-      { "movement": "thruster", "reps": 18, "unit": "reps" },
-      { "movement": "bar muscle-up", "reps": 15, "unit": "reps" },
-      { "movement": "double under", "reps": 30, "unit": "reps" },
-      { "movement": "thruster", "reps": 15, "unit": "reps" }
-    ]
+      {
+        "movement": "pull-up",
+        "reps": 21,
+        "unit": "reps"
+      },
+      {
+        "movement": "double under",
+        "reps": 42,
+        "unit": "reps"
+      },
+      {
+        "movement": "thruster",
+        "reps": 21,
+        "unit": "reps"
+      },
+      {
+        "movement": "chest-to-bar pull-up",
+        "reps": 18,
+        "unit": "reps"
+      },
+      {
+        "movement": "double under",
+        "reps": 36,
+        "unit": "reps"
+      },
+      {
+        "movement": "thruster",
+        "reps": 18,
+        "unit": "reps"
+      },
+      {
+        "movement": "bar muscle-up",
+        "reps": 15,
+        "unit": "reps"
+      },
+      {
+        "movement": "double under",
+        "reps": 30,
+        "unit": "reps"
+      },
+      {
+        "movement": "thruster",
+        "reps": 15,
+        "unit": "reps"
+      }
+    ],
+    "score_type": "time_minutes",
+    "lower_is_better": true,
+    "benchmark_bands": null
   },
   {
     "id": "25.3",
@@ -127,17 +393,60 @@
     "time_cap_minutes": 20,
     "rounds": null,
     "movements": [
-      { "movement": "wall walk", "reps": 5, "unit": "reps" },
-      { "movement": "row (machine)", "reps": 50, "unit": "cal" },
-      { "movement": "wall walk", "reps": 5, "unit": "reps" },
-      { "movement": "deadlift", "reps": 25, "unit": "reps" },
-      { "movement": "wall walk", "reps": 5, "unit": "reps" },
-      { "movement": "clean", "reps": 25, "unit": "reps" },
-      { "movement": "wall walk", "reps": 5, "unit": "reps" },
-      { "movement": "snatch", "reps": 25, "unit": "reps" },
-      { "movement": "wall walk", "reps": 5, "unit": "reps" },
-      { "movement": "row (machine)", "reps": 50, "unit": "cal" }
-    ]
+      {
+        "movement": "wall walk",
+        "reps": 5,
+        "unit": "reps"
+      },
+      {
+        "movement": "row (machine)",
+        "reps": 50,
+        "unit": "cal"
+      },
+      {
+        "movement": "wall walk",
+        "reps": 5,
+        "unit": "reps"
+      },
+      {
+        "movement": "deadlift",
+        "reps": 25,
+        "unit": "reps"
+      },
+      {
+        "movement": "wall walk",
+        "reps": 5,
+        "unit": "reps"
+      },
+      {
+        "movement": "clean",
+        "reps": 25,
+        "unit": "reps"
+      },
+      {
+        "movement": "wall walk",
+        "reps": 5,
+        "unit": "reps"
+      },
+      {
+        "movement": "snatch",
+        "reps": 25,
+        "unit": "reps"
+      },
+      {
+        "movement": "wall walk",
+        "reps": 5,
+        "unit": "reps"
+      },
+      {
+        "movement": "row (machine)",
+        "reps": 50,
+        "unit": "cal"
+      }
+    ],
+    "score_type": "time_minutes",
+    "lower_is_better": true,
+    "benchmark_bands": null
   },
   {
     "id": "26.1",
@@ -147,20 +456,75 @@
     "time_cap_minutes": 12,
     "rounds": null,
     "movements": [
-      { "movement": "wall ball shot", "reps": 20, "unit": "reps" },
-      { "movement": "box jump-over", "reps": 18, "unit": "reps" },
-      { "movement": "wall ball shot", "reps": 30, "unit": "reps" },
-      { "movement": "box jump-over", "reps": 18, "unit": "reps" },
-      { "movement": "wall ball shot", "reps": 40, "unit": "reps" },
-      { "movement": "medicine ball box step-over", "reps": 18, "unit": "reps" },
-      { "movement": "wall ball shot", "reps": 66, "unit": "reps" },
-      { "movement": "medicine ball box step-over", "reps": 18, "unit": "reps" },
-      { "movement": "wall ball shot", "reps": 40, "unit": "reps" },
-      { "movement": "box jump-over", "reps": 18, "unit": "reps" },
-      { "movement": "wall ball shot", "reps": 30, "unit": "reps" },
-      { "movement": "box jump-over", "reps": 18, "unit": "reps" },
-      { "movement": "wall ball shot", "reps": 20, "unit": "reps" }
-    ]
+      {
+        "movement": "wall ball shot",
+        "reps": 20,
+        "unit": "reps"
+      },
+      {
+        "movement": "box jump-over",
+        "reps": 18,
+        "unit": "reps"
+      },
+      {
+        "movement": "wall ball shot",
+        "reps": 30,
+        "unit": "reps"
+      },
+      {
+        "movement": "box jump-over",
+        "reps": 18,
+        "unit": "reps"
+      },
+      {
+        "movement": "wall ball shot",
+        "reps": 40,
+        "unit": "reps"
+      },
+      {
+        "movement": "medicine ball box step-over",
+        "reps": 18,
+        "unit": "reps"
+      },
+      {
+        "movement": "wall ball shot",
+        "reps": 66,
+        "unit": "reps"
+      },
+      {
+        "movement": "medicine ball box step-over",
+        "reps": 18,
+        "unit": "reps"
+      },
+      {
+        "movement": "wall ball shot",
+        "reps": 40,
+        "unit": "reps"
+      },
+      {
+        "movement": "box jump-over",
+        "reps": 18,
+        "unit": "reps"
+      },
+      {
+        "movement": "wall ball shot",
+        "reps": 30,
+        "unit": "reps"
+      },
+      {
+        "movement": "box jump-over",
+        "reps": 18,
+        "unit": "reps"
+      },
+      {
+        "movement": "wall ball shot",
+        "reps": 20,
+        "unit": "reps"
+      }
+    ],
+    "score_type": "time_minutes",
+    "lower_is_better": true,
+    "benchmark_bands": null
   },
   {
     "id": "26.2",
@@ -170,16 +534,55 @@
     "time_cap_minutes": 15,
     "rounds": "3 escalating rounds",
     "movements": [
-      { "movement": "dumbbell overhead walking lunge", "reps": 80, "unit": "ft" },
-      { "movement": "dumbbell snatch", "reps": 20, "unit": "reps" },
-      { "movement": "pull-up", "reps": 20, "unit": "reps" },
-      { "movement": "dumbbell overhead walking lunge", "reps": 80, "unit": "ft" },
-      { "movement": "dumbbell snatch", "reps": 20, "unit": "reps" },
-      { "movement": "chest-to-bar pull-up", "reps": 20, "unit": "reps" },
-      { "movement": "dumbbell overhead walking lunge", "reps": 80, "unit": "ft" },
-      { "movement": "dumbbell snatch", "reps": 20, "unit": "reps" },
-      { "movement": "ring muscle-up", "reps": 20, "unit": "reps" }
-    ]
+      {
+        "movement": "dumbbell overhead walking lunge",
+        "reps": 80,
+        "unit": "ft"
+      },
+      {
+        "movement": "dumbbell snatch",
+        "reps": 20,
+        "unit": "reps"
+      },
+      {
+        "movement": "pull-up",
+        "reps": 20,
+        "unit": "reps"
+      },
+      {
+        "movement": "dumbbell overhead walking lunge",
+        "reps": 80,
+        "unit": "ft"
+      },
+      {
+        "movement": "dumbbell snatch",
+        "reps": 20,
+        "unit": "reps"
+      },
+      {
+        "movement": "chest-to-bar pull-up",
+        "reps": 20,
+        "unit": "reps"
+      },
+      {
+        "movement": "dumbbell overhead walking lunge",
+        "reps": 80,
+        "unit": "ft"
+      },
+      {
+        "movement": "dumbbell snatch",
+        "reps": 20,
+        "unit": "reps"
+      },
+      {
+        "movement": "ring muscle-up",
+        "reps": 20,
+        "unit": "reps"
+      }
+    ],
+    "score_type": "time_minutes",
+    "lower_is_better": true,
+    "benchmark_bands": null
   },
   {
     "id": "26.3",
@@ -189,9 +592,24 @@
     "time_cap_minutes": null,
     "rounds": "2 rounds x 3 weight blocks",
     "movements": [
-      { "movement": "lateral burpee over bar", "reps": 144, "unit": "reps total" },
-      { "movement": "clean", "reps": 72, "unit": "reps total" },
-      { "movement": "thruster", "reps": 72, "unit": "reps total" }
-    ]
+      {
+        "movement": "lateral burpee over bar",
+        "reps": 144,
+        "unit": "reps total"
+      },
+      {
+        "movement": "clean",
+        "reps": 72,
+        "unit": "reps total"
+      },
+      {
+        "movement": "thruster",
+        "reps": 72,
+        "unit": "reps total"
+      }
+    ],
+    "score_type": "time_minutes",
+    "lower_is_better": true,
+    "benchmark_bands": null
   }
 ]

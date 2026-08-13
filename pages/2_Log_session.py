@@ -1,16 +1,17 @@
 import streamlit as st
 from datetime import date
 
-# from logic.muscle_mapping import load_workouts
 from logic.muscle_mapping import load_workouts, load_movements, compute_muscle_load, format_top_muscles
-st.set_page_config(page_title="Log session", page_icon="✅", layout="centered")
+from logic.scoring import workout_status, format_score
+from logic.aggregate import load_sessions
 
+st.set_page_config(page_title="Log session", page_icon="✅", layout="centered")
 
 @st.cache_data
 def get_data():
-    return load_workouts(), load_movements()
+    return load_workouts(), load_movements(), load_sessions()
 
-workouts, (movement_map, muscle_groups) = get_data()
+workouts, (movement_map, muscle_groups), sessions = get_data()
 workouts_by_name = {w["name"]: w for w in workouts}
 
 st.title("Log a session")
@@ -41,9 +42,29 @@ with st.container(border=True):
         reps = f"{m['reps']} " if m.get("reps") is not None else ""
         st.write(f"- {reps}{m.get('unit', '')} — **{m['movement']}**".replace("  ", " "))
 
+    all_sessions = sessions + st.session_state.logged_sessions
+    status = workout_status(selected, all_sessions)
+    st.divider()
+    if status["has_pb"]:
+        st.success(f"Your current PB: **{status['pb_display']}** (from {status['attempt_count']} logged attempt{'s' if status['attempt_count'] != 1 else ''})")
+    elif status["has_benchmark"]:
+        st.info("You haven't logged this one yet. Your first attempt will be evaluated against the public benchmark ranges below — every attempt after that compares against your own PB instead.")
+        bands = status["bands"]
+        band_order = ["elite", "advanced", "intermediate", "beginner"] if selected["lower_is_better"] else ["beginner", "intermediate", "advanced", "elite"]
+        cols = st.columns(4)
+        for col, level in zip(cols, band_order):
+            lo, hi = bands[level]
+            col.metric(level.capitalize(), f"{format_score(lo, status['score_type'])}–{format_score(hi, status['score_type'])}")
+    else:
+        st.info("You haven't logged this one yet, and there's no public benchmark data for this workout (Open workouts are leaderboard-scored, not band-scored). Your first logged attempt becomes your baseline.")
+
+score_type = selected["score_type"]
+score_label = "Time (minutes, e.g. 6.5 for 6:30)" if score_type == "time_minutes" else "Rounds completed (e.g. 15.5 for 15 rounds + partial)"
+
 with st.form("log_session_form", clear_on_submit=True):
     session_date = st.date_input("Date", value=DEMO_TODAY, max_value=DEMO_TODAY,
                                    help="Capped at the demo's 'today' so it shows up in the Dashboard's rolling windows.")
+    score = st.number_input(score_label, min_value=0.0, step=0.1, format="%.1f")
     submitted = st.form_submit_button("Log session")
 
     if submitted:
@@ -51,6 +72,7 @@ with st.form("log_session_form", clear_on_submit=True):
             "date": session_date.isoformat(),
             "workout_id": selected["id"],
             "workout_name": workout_name,
+            "score": score if score > 0 else None,
         })
         st.success(f"Logged {workout_name} on {session_date.isoformat()} — go to Dashboard to see it reflected in your muscle volume.")
 
@@ -58,8 +80,10 @@ if st.session_state.logged_sessions:
     st.subheader("Logged this session")
     for i in reversed(range(len(st.session_state.logged_sessions))):
         s = st.session_state.logged_sessions[i]
+        wk = workouts_by_name[s["workout_name"]]
+        score_str = format_score(s.get("score"), wk["score_type"]) if s.get("score") is not None else "no score recorded"
         col_text, col_del = st.columns([5, 1])
-        col_text.write(f"- {s['date']} — {s['workout_name']}")
+        col_text.write(f"- {s['date']} — {s['workout_name']} ({score_str})")
         if col_del.button("Delete", key=f"delete_{i}"):
             st.session_state.logged_sessions.pop(i)
             st.rerun()
