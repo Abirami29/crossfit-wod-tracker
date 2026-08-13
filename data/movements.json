@@ -1,0 +1,56 @@
+{
+  "_muscle_groups": ["legs", "back", "chest", "shoulders", "arms", "core"],
+
+  "air squat": { "legs": 1.0, "core": 0.25 },
+  "back squat": { "legs": 1.0, "back": 0.25, "core": 0.25 },
+  "front squat": { "legs": 1.0, "core": 0.5, "shoulders": 0.25 },
+  "overhead squat": { "legs": 1.0, "shoulders": 0.5, "core": 0.5 },
+  "deadlift": { "back": 1.0, "legs": 0.75, "core": 0.25 },
+  "sumo deadlift high pull": { "legs": 0.75, "back": 0.5, "shoulders": 0.5 },
+  "kettlebell swing": { "legs": 0.75, "back": 0.5, "shoulders": 0.25 },
+  "box jump": { "legs": 1.0, "core": 0.25 },
+  "lunge": { "legs": 1.0, "core": 0.25 },
+  "wall ball": { "legs": 0.75, "shoulders": 0.5, "core": 0.25 },
+  "burpee": { "legs": 0.5, "chest": 0.5, "shoulders": 0.25, "core": 0.5 },
+
+  "pull-up": { "back": 1.0, "arms": 0.5 },
+  "chest-to-bar pull-up": { "back": 1.0, "arms": 0.5, "shoulders": 0.25 },
+  "toes-to-bar": { "core": 1.0, "back": 0.25, "arms": 0.25 },
+  "muscle-up": { "back": 1.0, "chest": 0.5, "arms": 0.5, "shoulders": 0.25 },
+  "rope climb": { "back": 1.0, "arms": 0.75, "core": 0.25 },
+  "row": { "back": 0.75, "legs": 0.5, "arms": 0.25 },
+
+  "push-up": { "chest": 1.0, "shoulders": 0.5, "arms": 0.5 },
+  "bench press": { "chest": 1.0, "shoulders": 0.25, "arms": 0.25 },
+  "dip": { "chest": 0.75, "arms": 0.75, "shoulders": 0.25 },
+
+  "shoulder press": { "shoulders": 1.0, "arms": 0.25, "core": 0.25 },
+  "push press": { "shoulders": 1.0, "legs": 0.5, "arms": 0.25 },
+  "push jerk": { "shoulders": 1.0, "legs": 0.5, "core": 0.25 },
+  "handstand push-up": { "shoulders": 1.0, "arms": 0.5, "chest": 0.25 },
+  "thruster": { "legs": 0.75, "shoulders": 0.75, "core": 0.5 },
+  "snatch": { "legs": 0.75, "back": 0.5, "shoulders": 0.75, "core": 0.5 },
+  "clean": { "legs": 0.75, "back": 0.75, "shoulders": 0.5, "core": 0.5 },
+  "clean and jerk": { "legs": 0.75, "back": 0.5, "shoulders": 0.75, "core": 0.5 },
+
+  "double under": { "legs": 0.5, "shoulders": 0.25, "core": 0.25 },
+  "run": { "legs": 1.0, "core": 0.25 },
+  "row (machine)": { "legs": 0.5, "back": 0.5, "arms": 0.25, "core": 0.25 },
+
+  "sit-up": { "core": 1.0 },
+  "plank": { "core": 1.0, "shoulders": 0.25 },
+  "farmers carry": { "core": 0.5, "back": 0.5, "arms": 0.5, "legs": 0.25 },
+
+  "lateral burpee over dumbbell": { "legs": 0.5, "chest": 0.5, "shoulders": 0.25, "core": 0.5 },
+  "dumbbell hang clean-to-overhead": { "legs": 0.5, "shoulders": 0.75, "back": 0.5, "core": 0.25 },
+  "walking lunge": { "legs": 1.0, "core": 0.25 },
+  "bar muscle-up": { "back": 1.0, "chest": 0.5, "arms": 0.5, "shoulders": 0.25 },
+  "wall ball shot": { "legs": 0.75, "shoulders": 0.5, "core": 0.25 },
+  "box jump-over": { "legs": 1.0, "core": 0.25 },
+  "medicine ball box step-over": { "legs": 0.75, "core": 0.25 },
+  "dumbbell overhead walking lunge": { "legs": 1.0, "shoulders": 0.75, "core": 0.5 },
+  "dumbbell snatch": { "legs": 0.5, "back": 0.5, "shoulders": 0.75, "core": 0.5 },
+  "ring muscle-up": { "back": 1.0, "chest": 0.5, "arms": 0.5, "shoulders": 0.25 },
+  "wall walk": { "shoulders": 1.0, "chest": 0.5, "core": 0.5 },
+  "lateral burpee over bar": { "legs": 0.5, "chest": 0.5, "shoulders": 0.25, "core": 0.5 }
+}
