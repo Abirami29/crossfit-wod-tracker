@@ -70,24 +70,29 @@ with col_main:
             st.write(f"- {reps}{unit} — **{m['movement']}**".replace("  ", " "))
 
     status = workout_status(selected, all_sessions)
-    if status["has_pb"]:
-        st.success(f"🏆 Your PB: **{status['pb_display']}** (from {status['attempt_count']} logged attempt{'s' if status['attempt_count'] != 1 else ''})")
-    elif status["has_benchmark"]:
-        st.info(
-            "You haven't attempted this workout yet. Until you log a score, it'll be evaluated against public "
-            "benchmark ranges below — from your next attempt onward, it'll compare against your own PB instead."
-        )
-        bands = status["bands"]
-        band_order = ["elite", "advanced", "intermediate", "beginner"] if selected["lower_is_better"] else ["beginner", "intermediate", "advanced", "elite"]
-        cols = st.columns(4)
-        for col, level in zip(cols, band_order):
-            lo, hi = bands[level]
-            col.metric(level.capitalize(), f"{format_score(lo, status['score_type'])}–{format_score(hi, status['score_type'])}")
-    else:
-        st.info(
-            "You haven't attempted this workout yet, and there's no public benchmark data available for it "
-            "(Open workouts are leaderboard-scored, not band-scored). Your first logged attempt will become your baseline."
-        )
+    if status["rx"]["has_pb"]:
+        st.success(f"🏆 Your Rx PB: **{status['rx']['pb_display']}** (from {status['rx']['attempt_count']} attempt{'s' if status['rx']['attempt_count'] != 1 else ''})")
+    if status["scaled"]["has_pb"]:
+        note = " (not directly comparable to Rx benchmark bands)" if status["has_benchmark"] else ""
+        st.info(f"Your Scaled PB: **{status['scaled']['pb_display']}** (from {status['scaled']['attempt_count']} attempt{'s' if status['scaled']['attempt_count'] != 1 else ''}){note}")
+    if not status["has_any_pb"]:
+        if status["has_benchmark"]:
+            st.info(
+                "You haven't attempted this workout yet. Until you log an Rx score, it'll be evaluated against public "
+                "benchmark ranges below — from your next Rx attempt onward, it'll compare against your own Rx PB instead. "
+                "Scaled attempts are tracked separately."
+            )
+            bands = status["bands"]
+            band_order = ["elite", "advanced", "intermediate", "beginner"] if selected["lower_is_better"] else ["beginner", "intermediate", "advanced", "elite"]
+            cols = st.columns(4)
+            for col, level in zip(cols, band_order):
+                lo, hi = bands[level]
+                col.metric(level.capitalize(), f"{format_score(lo, status['score_type'])}–{format_score(hi, status['score_type'])}")
+        else:
+            st.info(
+                "You haven't attempted this workout yet, and there's no public benchmark data available for it "
+                "(Open workouts are leaderboard-scored, not band-scored). Your first logged attempt will become your baseline."
+            )
 
     fig = go.Figure()
     categories_r = [m.capitalize() for m in muscle_groups] + [muscle_groups[0].capitalize()]

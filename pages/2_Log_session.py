@@ -45,18 +45,22 @@ with st.container(border=True):
     all_sessions = sessions + st.session_state.logged_sessions
     status = workout_status(selected, all_sessions)
     st.divider()
-    if status["has_pb"]:
-        st.success(f"Your current PB: **{status['pb_display']}** (from {status['attempt_count']} logged attempt{'s' if status['attempt_count'] != 1 else ''})")
-    elif status["has_benchmark"]:
-        st.info("You haven't logged this one yet. Your first attempt will be evaluated against the public benchmark ranges below — every attempt after that compares against your own PB instead.")
-        bands = status["bands"]
-        band_order = ["elite", "advanced", "intermediate", "beginner"] if selected["lower_is_better"] else ["beginner", "intermediate", "advanced", "elite"]
-        cols = st.columns(4)
-        for col, level in zip(cols, band_order):
-            lo, hi = bands[level]
-            col.metric(level.capitalize(), f"{format_score(lo, status['score_type'])}–{format_score(hi, status['score_type'])}")
-    else:
-        st.info("You haven't logged this one yet, and there's no public benchmark data for this workout (Open workouts are leaderboard-scored, not band-scored). Your first logged attempt becomes your baseline.")
+    if status["rx"]["has_pb"]:
+        st.success(f"🏆 Your Rx PB: **{status['rx']['pb_display']}** (from {status['rx']['attempt_count']} attempt{'s' if status['rx']['attempt_count'] != 1 else ''})")
+    if status["scaled"]["has_pb"]:
+        note = " (not directly comparable to Rx benchmark bands)" if status["has_benchmark"] else ""
+        st.info(f"Your Scaled PB: **{status['scaled']['pb_display']}** (from {status['scaled']['attempt_count']} attempt{'s' if status['scaled']['attempt_count'] != 1 else ''}){note}")
+    if not status["has_any_pb"]:
+        if status["has_benchmark"]:
+            st.info("You haven't logged this one yet. Your first Rx attempt will be evaluated against the public benchmark ranges below — every attempt after that compares against your own Rx PB instead. Scaled attempts are tracked separately.")
+            bands = status["bands"]
+            band_order = ["elite", "advanced", "intermediate", "beginner"] if selected["lower_is_better"] else ["beginner", "intermediate", "advanced", "elite"]
+            cols = st.columns(4)
+            for col, level in zip(cols, band_order):
+                lo, hi = bands[level]
+                col.metric(level.capitalize(), f"{format_score(lo, status['score_type'])}–{format_score(hi, status['score_type'])}")
+        else:
+            st.info("You haven't logged this one yet, and there's no public benchmark data for this workout (Open workouts are leaderboard-scored, not band-scored). Your first logged attempt becomes your baseline.")
 
 score_type = selected["score_type"]
 score_label = "Time (minutes, e.g. 6.5 for 6:30)" if score_type == "time_minutes" else "Rounds completed (e.g. 15.5 for 15 rounds + partial)"
@@ -64,6 +68,11 @@ score_label = "Time (minutes, e.g. 6.5 for 6:30)" if score_type == "time_minutes
 with st.form("log_session_form", clear_on_submit=True):
     session_date = st.date_input("Date", value=DEMO_TODAY, max_value=DEMO_TODAY,
                                    help="Capped at the demo's 'today' so it shows up in the Dashboard's rolling windows.")
+    scale = st.radio(
+        "Scale", ["Rx", "Scaled"], horizontal=True,
+        help="Rx = as prescribed (full weight/movement). Scaled = reduced weight or an easier movement variant. "
+             "Kept as separate PBs since they represent different amounts of work."
+    )
     score = st.number_input(score_label, min_value=0.0, step=0.1, format="%.1f")
     submitted = st.form_submit_button("Log session")
 
@@ -73,8 +82,9 @@ with st.form("log_session_form", clear_on_submit=True):
             "workout_id": selected["id"],
             "workout_name": workout_name,
             "score": score if score > 0 else None,
+            "scale": scale.lower(),
         })
-        st.success(f"Logged {workout_name} on {session_date.isoformat()} — go to Dashboard to see it reflected in your muscle volume.")
+        st.success(f"Logged {workout_name} ({scale}) on {session_date.isoformat()} — go to Dashboard to see it reflected in your muscle volume.")
 
 if st.session_state.logged_sessions:
     st.subheader("Logged this session")
@@ -82,8 +92,9 @@ if st.session_state.logged_sessions:
         s = st.session_state.logged_sessions[i]
         wk = workouts_by_name[s["workout_name"]]
         score_str = format_score(s.get("score"), wk["score_type"]) if s.get("score") is not None else "no score recorded"
+        scale_str = s.get("scale", "rx").capitalize()
         col_text, col_del = st.columns([5, 1])
-        col_text.write(f"- {s['date']} — {s['workout_name']} ({score_str})")
+        col_text.write(f"- {s['date']} — {s['workout_name']} ({scale_str}, {score_str})")
         if col_del.button("Delete", key=f"delete_{i}"):
             st.session_state.logged_sessions.pop(i)
             st.rerun()
